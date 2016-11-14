@@ -9,4 +9,15 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+  
+  def render_answer_form_helper(answer, form)
+      partial = answer.question.type.to_s.split("::").last.downcase
+      render partial: "answers/#{partial}", locals: { f: form, answer: answer }
+    end
+
+    def checkbox_checked?(answer, option)
+      answers_delimiter = "\r\n"
+      answers = answer.answer_text.to_s.split(answers_delimiter)
+      answers.include?(option)
+    end
 end

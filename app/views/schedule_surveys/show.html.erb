@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @schedule_survey.user %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @schedule_survey.survey %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_survey_path(@schedule_survey) %> |
+<%= link_to 'Back', {controller:"schedule_surveys", action:"list_survey", my_param: @schedule_survey.survey_id}, id: "btny" %>

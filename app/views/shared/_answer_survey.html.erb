@@ -1,0 +1,3 @@
+<% if !current_user.admin %>
+	<%= link_to"Answer Surveys", {controller:"schedule_surveys", action:"list_survey_user", my_param: current_user.id}, id: "btny", class: "btn btn-primary" %>
+<% end %>
