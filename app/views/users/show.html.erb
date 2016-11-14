@@ -10,6 +10,10 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    <section><p></p></section>
+    <% if @user.admin == true %>
+      <%= link_to "Create Survey", surveys_path, class: "btn btn-md btn-info" %>
+    <% end %>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

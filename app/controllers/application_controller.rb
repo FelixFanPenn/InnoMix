@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  private
+  #private
 
     # Confirms a logged-in user.
     def logged_in_user
@@ -12,6 +12,17 @@ class ApplicationController < ActionController::Base
         store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
+      end
+    end
+
+
+    def can_administer?
+      current_user.try(:admin?)
+    end
+    
+    def authenticate_administrator!
+      unless can_administer?
+        raise AccessDenied.new("cannot administer questions")
       end
     end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :schedule_surveys
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -16,6 +17,19 @@ Rails.application.routes.draw do
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+
+  get 'listschedule' => 'schedule_surveys#list_survey'
+  get 'listscheduleuser' => 'schedule_surveys#list_survey_user'
+
+  resources :surveys do
+    get 'results', on: :member
+
+    resources :questions
+    resources :attempts, only: [:new, :create]
+  end
+
+  get 'surveys' => "surveys#index"
+
   resources :users do
     member do
       get :following, :followers
@@ -25,6 +39,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :schedule_surveys
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

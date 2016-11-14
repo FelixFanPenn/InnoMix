@@ -1,0 +1,1 @@
+json.array! @schedule_surveys, partial: 'schedule_surveys/schedule_survey', as: :schedule_survey

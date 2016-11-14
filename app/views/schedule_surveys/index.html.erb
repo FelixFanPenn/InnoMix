@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Schedule Surveys</h1>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Survey</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @schedule_surveys != nil%>
+      <% @schedule_surveys.each do |schedule_survey| %>
+        <tr>
+          <td><%= schedule_survey.user.name %></td>
+          <td><%= schedule_survey.survey.name %></td>
+          <td><%= link_to 'Show', schedule_survey %></td>
+          <td><%= link_to 'Edit', edit_schedule_survey_path(schedule_survey) %></td>
+          <td><%= link_to 'Destroy', schedule_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
